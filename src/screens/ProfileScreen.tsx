@@ -7,11 +7,15 @@ import {
   Switch,
   StyleSheet,
   ScrollView,
+  Modal,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { colors, spacing, typography } from '../constants/theme';
 import { useAuthContext } from '../store/AuthContext';
 import { RingLevel } from '../types';
+import RingProgress from '../components/Trust/RingProgress';
+import RingLimits from '../components/Trust/RingLimits';
+import KarmaLog from '../components/Trust/KarmaLog';
 
 const RING_COLORS: Record<RingLevel, string> = {
   [RingLevel.Guest]: colors.rings.guest,
@@ -27,6 +31,7 @@ export default function ProfileScreen() {
 
   const [editing, setEditing] = useState(false);
   const [nickname, setNickname] = useState(profile?.nickname ?? '');
+  const [karmaLogVisible, setKarmaLogVisible] = useState(false);
 
   const handleSaveNickname = async () => {
     await updateProfile({ nickname });
@@ -82,6 +87,34 @@ export default function ProfileScreen() {
           <Text style={styles.statLabel}>{t('profile.ring')}</Text>
         </View>
       </View>
+
+      {profile && <RingProgress profile={profile} />}
+      {profile && <RingLimits ring={profile.ring} />}
+
+      {profile && (
+        <TouchableOpacity style={styles.karmaButton} onPress={() => setKarmaLogVisible(true)}>
+          <Text style={styles.karmaButtonText}>{t('karma.history')}</Text>
+        </TouchableOpacity>
+      )}
+
+      <Modal
+        visible={karmaLogVisible}
+        animationType="slide"
+        presentationStyle="pageSheet"
+        onRequestClose={() => setKarmaLogVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalHeader}>
+            <Text style={styles.modalTitle}>{t('karma.history')}</Text>
+            <TouchableOpacity onPress={() => setKarmaLogVisible(false)}>
+              <Text style={styles.modalClose}>{t('common.back')}</Text>
+            </TouchableOpacity>
+          </View>
+          <ScrollView>
+            {profile && <KarmaLog userId={profile.id} />}
+          </ScrollView>
+        </View>
+      </Modal>
 
       <View style={styles.langRow}>
         <Text style={styles.langLabel}>{t('profile.language')}</Text>
@@ -197,5 +230,40 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: typography.fontSizeMedium,
+  },
+  karmaButton: {
+    backgroundColor: colors.primary,
+    borderRadius: 8,
+    paddingHorizontal: spacing.xl,
+    paddingVertical: spacing.md,
+    marginBottom: spacing.md,
+  },
+  karmaButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: typography.fontSizeBase,
+    textAlign: 'center',
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+  },
+  modalTitle: {
+    fontSize: typography.fontSizeMedium,
+    fontWeight: 'bold',
+    color: colors.text,
+  },
+  modalClose: {
+    fontSize: typography.fontSizeBase,
+    color: colors.primary,
   },
 });
