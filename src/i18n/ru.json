@@ -7,8 +7,25 @@
     "cancel": "Отмена"
   },
   "map": {
-    "peopleNearby": "Людей рядом",
-    "yourZone": "Ваша зона"
+    "peopleNearby": "людей рядом",
+    "yourZone": "Ваша зона",
+    "noActiveZones": "Нет активных зон рядом",
+    "openChat": "Открыть чат",
+    "zoneRadius": "Радиус",
+    "meters": "м",
+    "kilometers": "км",
+    "autoZone": "Автоматическая зона",
+    "userZone": "Пользовательская зона",
+    "eventZone": "Событие",
+    "peopleInZone": "человек в зоне",
+    "loading": "Определяем местоположение..."
+  },
+  "location": {
+    "permissionTitle": "Доступ к геолокации",
+    "permissionDescription": "Для работы Rings необходим доступ к вашей геолокации. Мы используем местоположение, чтобы показать чаты и людей рядом.",
+    "permissionButton": "Разрешить доступ",
+    "permissionLater": "Позже",
+    "permissionDenied": "Доступ к геолокации отклонён. Включите в настройках устройства."
   },
   "chat": {
     "placeholder": "Написать сообщение...",
