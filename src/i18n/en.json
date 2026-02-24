@@ -7,8 +7,25 @@
     "cancel": "Cancel"
   },
   "map": {
-    "peopleNearby": "People nearby",
-    "yourZone": "Your zone"
+    "peopleNearby": "people nearby",
+    "yourZone": "Your zone",
+    "noActiveZones": "No active zones nearby",
+    "openChat": "Open chat",
+    "zoneRadius": "Radius",
+    "meters": "m",
+    "kilometers": "km",
+    "autoZone": "Auto zone",
+    "userZone": "User zone",
+    "eventZone": "Event",
+    "peopleInZone": "people in zone",
+    "loading": "Detecting location..."
+  },
+  "location": {
+    "permissionTitle": "Location Access",
+    "permissionDescription": "Rings needs access to your location to show nearby chats and people.",
+    "permissionButton": "Allow Access",
+    "permissionLater": "Later",
+    "permissionDenied": "Location access denied. Please enable in device settings."
   },
   "chat": {
     "placeholder": "Write a message...",

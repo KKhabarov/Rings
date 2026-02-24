@@ -45,3 +45,19 @@ export interface SubChannel {
   name: string;
   category: string;
 }
+
+// Nearby user (returned by nearby_users RPC)
+export interface NearbyUser {
+  id: string;
+  nickname: string;
+  avatar_url?: string;
+  ring: RingLevel;
+  karma: number;
+  distance_meters: number;
+}
+
+// Location coordinates
+export interface LocationCoords {
+  latitude: number;
+  longitude: number;
+}
