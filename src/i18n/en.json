@@ -19,12 +19,21 @@
     "title": "Profile",
     "logout": "Logout",
     "settings": "Settings",
-    "language": "Language"
+    "language": "Language",
+    "edit": "Edit",
+    "karma": "Karma",
+    "ring": "Ring",
+    "save": "Save"
   },
   "auth": {
     "login": "Login",
     "register": "Register",
-    "phone": "Phone number"
+    "phone": "Phone number",
+    "email": "Email",
+    "password": "Password",
+    "nickname": "Nickname",
+    "noAccount": "No account? Register",
+    "haveAccount": "Already have an account? Login"
   },
   "rings": {
     "guest": "Guest",
@@ -32,5 +41,10 @@
     "resident": "Resident",
     "oldTimer": "Old-Timer",
     "guardian": "Guardian"
+  },
+  "errors": {
+    "invalidCredentials": "Invalid email or password",
+    "emailInUse": "Email is already in use",
+    "fillAllFields": "Please fill in all fields"
   }
 }
