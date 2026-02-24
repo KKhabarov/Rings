@@ -19,12 +19,21 @@
     "title": "Профиль",
     "logout": "Выйти",
     "settings": "Настройки",
-    "language": "Язык"
+    "language": "Язык",
+    "edit": "Редактировать",
+    "karma": "Карма",
+    "ring": "Кольцо",
+    "save": "Сохранить"
   },
   "auth": {
     "login": "Войти",
     "register": "Зарегистрироваться",
-    "phone": "Номер телефона"
+    "phone": "Номер телефона",
+    "email": "Email",
+    "password": "Пароль",
+    "nickname": "Никнейм",
+    "noAccount": "Нет аккаунта? Зарегистрируйтесь",
+    "haveAccount": "Уже есть аккаунт? Войдите"
   },
   "rings": {
     "guest": "Гость",
@@ -32,5 +41,10 @@
     "resident": "Резидент",
     "oldTimer": "Старожил",
     "guardian": "Хранитель"
+  },
+  "errors": {
+    "invalidCredentials": "Неверный email или пароль",
+    "emailInUse": "Email уже используется",
+    "fillAllFields": "Заполните все поля"
   }
 }

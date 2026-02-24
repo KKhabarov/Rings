@@ -1,34 +1,201 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Switch,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { colors } from '../constants/theme';
+import { colors, spacing, typography } from '../constants/theme';
+import { useAuthContext } from '../store/AuthContext';
+import { RingLevel } from '../types';
+
+const RING_COLORS: Record<RingLevel, string> = {
+  [RingLevel.Guest]: colors.rings.guest,
+  [RingLevel.Local]: colors.rings.local,
+  [RingLevel.Resident]: colors.rings.resident,
+  [RingLevel.OldTimer]: colors.rings.oldTimer,
+  [RingLevel.Guardian]: colors.rings.guardian,
+};
 
 export default function ProfileScreen() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { profile, signOut, updateProfile } = useAuthContext();
+
+  const [editing, setEditing] = useState(false);
+  const [nickname, setNickname] = useState(profile?.nickname ?? '');
+
+  const handleSaveNickname = async () => {
+    await updateProfile({ nickname });
+    setEditing(false);
+  };
+
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
+  };
+
+  const ringColor = profile ? RING_COLORS[profile.ring] : colors.rings.guest;
+  const ringKey = profile
+    ? (['guest', 'local', 'resident', 'oldTimer', 'guardian'] as const)[profile.ring]
+    : 'guest';
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{t('profile.title')}</Text>
-      <Text style={styles.subtitle}>{t('profile.settings')}</Text>
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={[styles.avatar, { backgroundColor: ringColor }]}>
+        <Text style={styles.avatarText}>
+          {(profile?.nickname ?? '?')[0].toUpperCase()}
+        </Text>
+      </View>
+
+      <Text style={styles.ringLabel}>{t(`rings.${ringKey}`)}</Text>
+
+      {editing ? (
+        <View style={styles.row}>
+          <TextInput
+            style={styles.input}
+            value={nickname}
+            onChangeText={setNickname}
+          />
+          <TouchableOpacity style={styles.saveButton} onPress={handleSaveNickname}>
+            <Text style={styles.saveButtonText}>{t('profile.save')}</Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View style={styles.row}>
+          <Text style={styles.name}>{profile?.nickname ?? '—'}</Text>
+          <TouchableOpacity onPress={() => setEditing(true)}>
+            <Text style={styles.editLink}>{t('profile.edit')}</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
+      <View style={styles.statsRow}>
+        <View style={styles.stat}>
+          <Text style={styles.statValue}>{profile?.karma ?? 0}</Text>
+          <Text style={styles.statLabel}>{t('profile.karma')}</Text>
+        </View>
+        <View style={styles.stat}>
+          <Text style={[styles.statValue, { color: ringColor }]}>{t(`rings.${ringKey}`)}</Text>
+          <Text style={styles.statLabel}>{t('profile.ring')}</Text>
+        </View>
+      </View>
+
+      <View style={styles.langRow}>
+        <Text style={styles.langLabel}>{t('profile.language')}</Text>
+        <Switch
+          value={i18n.language === 'en'}
+          onValueChange={toggleLanguage}
+          thumbColor={colors.primary}
+        />
+        <Text style={styles.langLabel}>{i18n.language.toUpperCase()}</Text>
+      </View>
+
+      <TouchableOpacity style={styles.logoutButton} onPress={signOut}>
+        <Text style={styles.logoutText}>{t('profile.logout')}</Text>
+      </TouchableOpacity>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: spacing.xl,
+    paddingHorizontal: spacing.lg,
     backgroundColor: colors.background,
   },
-  title: {
-    fontSize: 24,
+  avatar: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: spacing.sm,
+  },
+  avatarText: {
+    color: '#fff',
+    fontSize: typography.fontSizeXLarge,
+    fontWeight: 'bold',
+  },
+  ringLabel: {
+    fontSize: typography.fontSizeBase,
+    color: colors.textSecondary,
+    marginBottom: spacing.sm,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: spacing.md,
+    gap: spacing.sm,
+  },
+  name: {
+    fontSize: typography.fontSizeLarge,
     fontWeight: 'bold',
     color: colors.text,
-    marginBottom: 8,
   },
-  subtitle: {
-    fontSize: 16,
+  editLink: {
+    color: colors.primary,
+    fontSize: typography.fontSizeBase,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: 8,
+    padding: spacing.sm,
+    fontSize: typography.fontSizeBase,
+    color: colors.text,
+    minWidth: 150,
+  },
+  saveButton: {
+    backgroundColor: colors.primary,
+    borderRadius: 8,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+  },
+  saveButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  statsRow: {
+    flexDirection: 'row',
+    gap: spacing.xl,
+    marginBottom: spacing.lg,
+  },
+  stat: {
+    alignItems: 'center',
+  },
+  statValue: {
+    fontSize: typography.fontSizeLarge,
+    fontWeight: 'bold',
+    color: colors.text,
+  },
+  statLabel: {
+    fontSize: typography.fontSizeBase,
     color: colors.textSecondary,
+  },
+  langRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    marginBottom: spacing.lg,
+  },
+  langLabel: {
+    fontSize: typography.fontSizeBase,
+    color: colors.textSecondary,
+  },
+  logoutButton: {
+    backgroundColor: '#EF4444',
+    borderRadius: 8,
+    paddingHorizontal: spacing.xl,
+    paddingVertical: spacing.md,
+  },
+  logoutText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: typography.fontSizeMedium,
   },
 });
