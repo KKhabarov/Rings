@@ -61,3 +61,21 @@ export interface LocationCoords {
   latitude: number;
   longitude: number;
 }
+
+export interface MessageWithAuthor extends Message {
+  subchannel?: string;
+  author: {
+    nickname: string;
+    avatar_url?: string;
+    ring: RingLevel;
+    karma: number;
+  };
+}
+
+export interface ChatChannel {
+  id: string;
+  name: string;
+  icon: string;
+}
+
+export type ReportReason = 'spam' | 'harassment' | 'threats' | 'inappropriate' | 'other';

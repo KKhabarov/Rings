@@ -30,7 +30,52 @@
   "chat": {
     "placeholder": "Write a message...",
     "generalChat": "General chat",
-    "noMessages": "No messages"
+    "noMessages": "No messages",
+    "writeMessage": "Write a message...",
+    "emptyTitle": "It's quiet here...",
+    "emptySubtitle": "Be the first to write in this zone!",
+    "noZone": "No active zone",
+    "noZoneDescription": "Go to the map to find zones nearby",
+    "openMap": "Open map",
+    "outsideZone": "You're outside the zone — read only",
+    "sending": "Sending...",
+    "loadMore": "Load more",
+    "justNow": "just now",
+    "minutesAgo": "min ago",
+    "hoursAgo": "h ago",
+    "yesterday": "yesterday",
+    "daysAgo": "d ago",
+    "peopleHere": "people here"
+  },
+  "channels": {
+    "general": "#general",
+    "help": "#help",
+    "giveaway": "#giveaway",
+    "noise": "#noise"
+  },
+  "reactions": {
+    "like": "👍",
+    "thanks": "🙏",
+    "funny": "😄",
+    "sad": "😢"
+  },
+  "report": {
+    "title": "Report",
+    "spam": "Spam",
+    "harassment": "Harassment",
+    "threats": "Threats",
+    "inappropriate": "Inappropriate content",
+    "other": "Other",
+    "description": "Describe the issue (optional)",
+    "submit": "Submit report",
+    "success": "Report submitted",
+    "cancel": "Cancel"
+  },
+  "messageActions": {
+    "react": "React",
+    "report": "Report",
+    "delete": "Delete",
+    "deleteConfirm": "Are you sure you want to delete this message?"
   },
   "profile": {
     "title": "Profile",

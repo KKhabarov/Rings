@@ -4,6 +4,7 @@ export const colors = {
   text: '#1A1A1A',
   textSecondary: '#6B7280',
   border: '#E5E7EB',
+  danger: '#EF4444',
   rings: {
     guest: '#9CA3AF',    // ⚪ серый
     local: '#3B82F6',    // 🔵 синий
