@@ -102,7 +102,50 @@
     "local": "Local",
     "resident": "Resident",
     "oldTimer": "Old-Timer",
-    "guardian": "Guardian"
+    "guardian": "Guardian",
+    "currentRing": "Current Ring",
+    "nextRing": "Next Ring",
+    "maxLevel": "Maximum level reached! 🎉",
+    "progress": "Progress",
+    "progressPercent": "to next ring",
+    "requirements": "Requirements",
+    "activeDays": "Active days",
+    "karmaRequired": "Karma",
+    "phoneVerified": "Phone verified",
+    "phoneNotVerified": "Phone not verified"
+  },
+  "karma": {
+    "title": "Karma",
+    "history": "Karma History",
+    "reaction_received": "Reaction received",
+    "report_received": "Report received",
+    "message_deleted": "Message deleted by moderation",
+    "event_created": "Event created",
+    "thanks_received": "Thanks received"
+  },
+  "limits": {
+    "title": "Privileges",
+    "readChats": "Read chats",
+    "sendMessages": "Send messages",
+    "messagesPerHour": "messages per hour",
+    "directMessages": "Direct messages",
+    "createTemporaryZones": "Create temporary zones",
+    "createPermanentZones": "Create permanent zones",
+    "moderation": "Zone moderation"
+  },
+  "spam": {
+    "warningTitle": "Approaching limit",
+    "messagesRemaining": "Messages remaining",
+    "limitReached": "Message limit reached",
+    "resetIn": "Limit resets in",
+    "minutes": "min"
+  },
+  "ban": {
+    "banned": "You are banned",
+    "shadowBanned": "Your messages are only visible to you",
+    "muted": "You are temporarily muted",
+    "reason": "Reason",
+    "expiresAt": "Ban expires at"
   },
   "errors": {
     "invalidCredentials": "Invalid email or password",

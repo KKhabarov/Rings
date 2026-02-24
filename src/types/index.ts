@@ -17,6 +17,11 @@ export interface User {
   karma: number;
   created_at: string;
   last_seen: string;
+  active_days: number;
+  messages_with_reactions_count: number;
+  successful_chats_count: number;
+  bans_count: number;
+  warnings_count: number;
 }
 
 // Zone

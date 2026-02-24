@@ -14,6 +14,7 @@ import ProfileScreen from './src/screens/ProfileScreen';
 import AuthScreen from './src/screens/AuthScreen';
 import { colors } from './src/constants/theme';
 import { AuthProvider, useAuthContext } from './src/store/AuthContext';
+import { trustService } from './src/services/trust';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -41,7 +42,13 @@ function MainTabs() {
 }
 
 function AppNavigator() {
-  const { session, loading } = useAuthContext();
+  const { session, loading, user } = useAuthContext();
+
+  React.useEffect(() => {
+    if (user?.id) {
+      trustService.incrementActiveDay(user.id);
+    }
+  }, [user?.id]);
 
   if (loading) return null;
 

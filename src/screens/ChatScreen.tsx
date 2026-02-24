@@ -25,6 +25,8 @@ import MessageBubble from '../components/Chat/MessageBubble';
 import MessageInput from '../components/Chat/MessageInput';
 import EmptyChat from '../components/Chat/EmptyChat';
 import ReportModal from '../components/Chat/ReportModal';
+import SpamWarning from '../components/Trust/SpamWarning';
+import { useAntiSpam } from '../hooks/useAntiSpam';
 import { MessageWithAuthor } from '../types';
 
 export default function ChatScreen() {
@@ -41,6 +43,7 @@ export default function ChatScreen() {
   );
 
   const [reportMessageId, setReportMessageId] = useState<string | null>(null);
+  const { canSend, messagesRemaining, resetTime, warningMessage, recordMessage } = useAntiSpam();
 
   const handleReact = async (messageId: string, reactionType: string) => {
     if (!user) return;
@@ -61,6 +64,12 @@ export default function ChatScreen() {
 
   const handleDelete = async (messageId: string) => {
     await messagesService.deleteMessage(messageId);
+  };
+
+  const handleSend = async (text: string) => {
+    if (!canSend) return;
+    await sendMessage(text);
+    recordMessage();
   };
 
   if (!currentZone) {
@@ -134,9 +143,13 @@ export default function ChatScreen() {
         />
       )}
 
+      {warningMessage !== null && (
+        <SpamWarning messagesRemaining={messagesRemaining} resetTime={resetTime} />
+      )}
+
       <MessageInput
-        onSend={sendMessage}
-        sending={sending}
+        onSend={handleSend}
+        sending={sending || !canSend}
         placeholder={t('chat.writeMessage')}
       />
 

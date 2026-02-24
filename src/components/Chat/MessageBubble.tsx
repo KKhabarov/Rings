@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { colors, spacing, typography } from '../../constants/theme';
 import { MessageWithAuthor, RingLevel } from '../../types';
 import { formatRelativeTime } from '../../utils/time';
+import RingBadge from '../Trust/RingBadge';
 
 interface MessageBubbleProps {
   message: MessageWithAuthor;
@@ -77,7 +78,7 @@ export default function MessageBubble({
           {!isOwn && (
             <View style={styles.authorRow}>
               <Text style={styles.nickname}>{message.author.nickname}</Text>
-              <View style={[styles.ringDot, { backgroundColor: ringColor }]} />
+              <RingBadge ring={message.author.ring} size="small" />
             </View>
           )}
           <Text style={[styles.text, isOwn && styles.textOwn]}>{message.text}</Text>
