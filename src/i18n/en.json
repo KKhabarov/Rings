@@ -1,0 +1,36 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "back": "Back",
+    "send": "Send",
+    "cancel": "Cancel"
+  },
+  "map": {
+    "peopleNearby": "People nearby",
+    "yourZone": "Your zone"
+  },
+  "chat": {
+    "placeholder": "Write a message...",
+    "generalChat": "General chat",
+    "noMessages": "No messages"
+  },
+  "profile": {
+    "title": "Profile",
+    "logout": "Logout",
+    "settings": "Settings",
+    "language": "Language"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "phone": "Phone number"
+  },
+  "rings": {
+    "guest": "Guest",
+    "local": "Local",
+    "resident": "Resident",
+    "oldTimer": "Old-Timer",
+    "guardian": "Guardian"
+  }
+}

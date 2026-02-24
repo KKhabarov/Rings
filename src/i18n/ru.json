@@ -1,0 +1,36 @@
+{
+  "common": {
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "back": "Назад",
+    "send": "Отправить",
+    "cancel": "Отмена"
+  },
+  "map": {
+    "peopleNearby": "Людей рядом",
+    "yourZone": "Ваша зона"
+  },
+  "chat": {
+    "placeholder": "Написать сообщение...",
+    "generalChat": "Общий чат",
+    "noMessages": "Нет сообщений"
+  },
+  "profile": {
+    "title": "Профиль",
+    "logout": "Выйти",
+    "settings": "Настройки",
+    "language": "Язык"
+  },
+  "auth": {
+    "login": "Войти",
+    "register": "Зарегистрироваться",
+    "phone": "Номер телефона"
+  },
+  "rings": {
+    "guest": "Гость",
+    "local": "Местный",
+    "resident": "Резидент",
+    "oldTimer": "Старожил",
+    "guardian": "Хранитель"
+  }
+}
