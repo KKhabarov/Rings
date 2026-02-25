@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 import { User } from '../types';
 
 interface AuthResult {
-  data: unknown;
+  data?: unknown;
   error: AuthError | Error | null;
 }
 

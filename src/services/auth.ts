@@ -23,7 +23,7 @@ export const authService = {
 
   signOut: async () => {
     const { error } = await supabase.auth.signOut();
-    return { error };
+    return { data: null, error };
   },
 
   getSession: async () => {
