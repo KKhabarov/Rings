@@ -1,6 +1,7 @@
 import './src/i18n';
 
 import React from 'react';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -45,11 +46,17 @@ function AppNavigator() {
 
   React.useEffect(() => {
     if (user?.id) {
-      trustService.incrementActiveDay(user.id);
+      trustService.incrementActiveDay(user.id).catch(() => {});
     }
   }, [user?.id]);
 
-  if (loading) return null;
+  if (loading) {
+    return (
+      <View style={loadingStyles.container}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </View>
+    );
+  }
 
   return (
     <NavigationContainer>
@@ -73,3 +80,12 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
+
+const loadingStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.background,
+  },
+});

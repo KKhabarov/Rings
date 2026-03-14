@@ -15,6 +15,7 @@ const supportedLanguages = ['ru', 'en'];
 const fallbackLanguage = 'ru';
 
 i18n.use(initReactI18next).init({
+  compatibilityJSON: 'v3',
   resources,
   lng: supportedLanguages.includes(deviceLanguage) ? deviceLanguage : fallbackLanguage,
   fallbackLng: fallbackLanguage,
